@@ -1,8 +1,8 @@
-package services;
+package com.ms.email.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.EmailRepository;
+import com.ms.email.repositories.EmailRepository;
 
 @Service
 public class EmailService {
