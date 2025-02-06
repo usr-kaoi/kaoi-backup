@@ -1,5 +1,6 @@
 package models;
 
+import enums.StatusEmail;
 import jakarta.persistence.*;
 import lombok.Data;
 
