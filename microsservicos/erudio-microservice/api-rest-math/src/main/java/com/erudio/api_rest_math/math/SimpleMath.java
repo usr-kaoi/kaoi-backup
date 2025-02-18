@@ -18,7 +18,7 @@ public class SimpleMath {
         return numberOne / numberTwo;
     }
 
-    public Double avarage(Double numberOne, Double numberTwo) {
+    public Double mean(Double numberOne, Double numberTwo) {
         return (numberOne + numberTwo) / 2;
     }
 

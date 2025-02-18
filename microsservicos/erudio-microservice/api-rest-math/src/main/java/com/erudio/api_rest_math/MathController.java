@@ -58,15 +58,15 @@ public class MathController {
         return math.quotient(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
 
-    @RequestMapping(value = "/avarage/{numberOne}/{numberTwo}", method=RequestMethod.GET)
-    public Double avarage(
+    @RequestMapping(value = "/mean/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+    public Double mean(
             @PathVariable(value = "numberOne") String numberOne,
             @PathVariable(value = "numberTwo") String numberTwo)  throws Exception {
 
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please, insert a numeric value!");
         }
-        return math.avarage((convertToDouble(numberOne)), convertToDouble(numberTwo));
+        return math.mean((convertToDouble(numberOne)), convertToDouble(numberTwo));
     }
 
     @RequestMapping(value = "/root/{number}", method=RequestMethod.GET)
