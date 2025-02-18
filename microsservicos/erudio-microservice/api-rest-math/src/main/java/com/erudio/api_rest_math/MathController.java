@@ -1,6 +1,7 @@
 package com.erudio.api_rest_math;
 
 import com.erudio.api_rest_math.exceptions.UnsupportedMathOperationException;
+import com.erudio.api_rest_math.math.SimpleMath;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +12,8 @@ import static com.erudio.api_rest_math.converters.NumberConverter.*;
 @RestController
 public class MathController {
 
+    private SimpleMath math = new SimpleMath();
+
     @RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method=RequestMethod.GET)
     public Double sum(
             @PathVariable(value = "numberOne") String numberOne,
@@ -19,7 +22,7 @@ public class MathController {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please, insert a numeric value!");
         }
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return math.sum(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
 
     @RequestMapping(value = "/difference/{numberOne}/{numberTwo}", method=RequestMethod.GET)
@@ -30,7 +33,7 @@ public class MathController {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please, insert a numeric value!");
         }
-        return convertToDouble(numberOne) - convertToDouble(numberTwo);
+        return math.difference(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
 
     @RequestMapping(value = "/product/{numberOne}/{numberTwo}", method=RequestMethod.GET)
@@ -41,7 +44,7 @@ public class MathController {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please, insert a numeric value!");
         }
-        return convertToDouble(numberOne) * convertToDouble(numberTwo);
+        return math.product(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
 
     @RequestMapping(value = "/quotient/{numberOne}/{numberTwo}", method=RequestMethod.GET)
@@ -52,7 +55,7 @@ public class MathController {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please, insert a numeric value!");
         }
-        return convertToDouble(numberOne) / convertToDouble(numberTwo);
+        return math.quotient(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
 
     @RequestMapping(value = "/avarage/{numberOne}/{numberTwo}", method=RequestMethod.GET)
@@ -63,16 +66,15 @@ public class MathController {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please, insert a numeric value!");
         }
-        return (convertToDouble(numberOne) + convertToDouble(numberTwo)) / 2;
+        return math.avarage((convertToDouble(numberOne)), convertToDouble(numberTwo));
     }
 
-    @RequestMapping(value = "/root/{numberOne}", method=RequestMethod.GET)
-    public Double root( @PathVariable(value = "numberOne") String numberOne) throws Exception {
+    @RequestMapping(value = "/root/{number}", method=RequestMethod.GET)
+    public Double root( @PathVariable(value = "number") String number) throws Exception {
 
-        if(!isNumeric(numberOne)){
+        if(!isNumeric(number)){
             throw new UnsupportedMathOperationException("Please, insert a numeric value!");
         }
-        double rootNumberOne = Math.sqrt(convertToDouble(numberOne));
-        return rootNumberOne;
+        return math.root(convertToDouble(number));
     }
 }
