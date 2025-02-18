@@ -1,4 +1,4 @@
-package com.erudio.api_rest_math;
+package com.erudio.api_rest_math.cotrollers;
 
 import com.erudio.api_rest_math.exceptions.UnsupportedMathOperationException;
 import com.erudio.api_rest_math.math.SimpleMath;
