@@ -1,6 +1,8 @@
 package com.erudio.api_rest_person.cotrollers;
 
 import com.erudio.api_rest_person.exceptions.UnsupportedMathOperationException;
+import com.erudio.api_rest_person.services.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,9 +13,10 @@ import java.util.concurrent.atomic.AtomicLong;
 import static com.erudio.api_rest_person.converters.NumberConverter.*;
 
 @RestController
-public class MathController {
+public class PersonController {
 
-    private final AtomicLong  counter = new AtomicLong();
+    @Autowired
+    private PersonService service;
 
     @RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method=RequestMethod.GET)
     public Double sum(
