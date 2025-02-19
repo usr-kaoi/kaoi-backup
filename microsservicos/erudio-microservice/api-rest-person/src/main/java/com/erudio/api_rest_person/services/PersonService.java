@@ -15,6 +15,13 @@ public class PersonService {
     public Person findById(String id) {
 
         logger.info("Finding one person!");
-        return new Person();
+
+        Person person = new Person();
+        person.setId(counter.incrementAndGet());
+        person.setAddress("Uberlândia - MG");
+        person.setGender("Male");
+        person.setFirstName("Leandro");
+        person.setLastName("Costa");
+        return person;
     }
 }

@@ -1,31 +1,23 @@
 package com.erudio.api_rest_person.cotrollers;
 
-import com.erudio.api_rest_person.exceptions.UnsupportedMathOperationException;
+import com.erudio.api_rest_person.model.Person;
 import com.erudio.api_rest_person.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.atomic.AtomicLong;
-
-import static com.erudio.api_rest_person.converters.NumberConverter.*;
-
 @RestController
+@RequestMapping("/person")
 public class PersonController {
 
     @Autowired
     private PersonService service;
 
-    @RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method=RequestMethod.GET)
-    public Double sum(
-            @PathVariable(value = "numberOne") String numberOne,
-            @PathVariable(value = "numberTwo") String numberTwo)  throws Exception {
-
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new UnsupportedMathOperationException("Please, insert a numeric value!");
-        }
-        return math.sum(convertToDouble(numberOne), convertToDouble(numberTwo));
+    @RequestMapping(value = "/{id}", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Person findById(@PathVariable(value = "id") String id)  throws Exception {
+        return service.findById(id);
     }
 }

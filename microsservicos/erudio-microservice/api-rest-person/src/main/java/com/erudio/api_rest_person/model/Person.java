@@ -49,6 +49,10 @@ public class Person implements Serializable {
         this.gender = gender;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     // HashCode e equals
     @Override
     public boolean equals(Object o) {
